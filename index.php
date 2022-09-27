@@ -4,7 +4,7 @@ session_start();
 
 if(isset($_POST['btn_login'])){
   $email = $_POST['email'];
-  $pass = $_POST['password'];
+  $pass = md5($_POST['password']);
 
   $sql = "SELECT * FROM tbl_user WHERE user_email = ? AND password = ? ";
   
@@ -15,13 +15,12 @@ if(isset($_POST['btn_login'])){
 
   $result = $query->fetch(PDO::FETCH_ASSOC);
 
-  if($result['user_email'] == $email AND 
-    $result['password'] == $pass){
+  error_reporting(0);
+  if($result['user_email'] == $email AND $result['password'] == $pass){
     header("refresh:1;dashboard.php");
   } else {
-    echo "Login Not OK";
+    echo "<p class='alert alert-danger text-uppercase'> Login Unsuccessfull </p>";
   }
-
 
 }
 
