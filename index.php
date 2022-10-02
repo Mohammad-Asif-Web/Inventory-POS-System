@@ -2,12 +2,13 @@
 include "functions/config.php";
 session_start();
 
+
 if(isset($_POST['btn_login'])){
   $email = $_POST['email'];
   $pass = md5($_POST['password']);
 
   $sql = "SELECT * FROM tbl_user WHERE user_email = ? AND password = ? ";
-  
+
   $query = $pdo->prepare($sql);
   $query->bindParam(1, $email);
   $query->bindParam(2, $pass);
@@ -15,9 +16,23 @@ if(isset($_POST['btn_login'])){
 
   $result = $query->fetch(PDO::FETCH_ASSOC);
 
-  error_reporting(0);
-  if($result['user_email'] == $email AND $result['password'] == $pass){
+  if($result['user_email'] == $email AND $result['password'] == $pass AND $result['role'] == 'Admin' ){
+
+    
+    $_SESSION['userID'] = $result['user_id'];
+    $_SESSION['userName'] = $result['username'];
+    $_SESSION['userEmail'] = $result['user_email'];
+    $_SESSION['userRole'] = $result['role'];
     header("refresh:1;dashboard.php");
+
+  } else if($result['user_email'] == $email AND $result['password'] == $pass AND $result['role'] == 'User' ){
+
+    $_SESSION['userID'] = $result['user_id'];
+    $_SESSION['userName'] = $result['username'];
+    $_SESSION['userEmail'] = $result['user_email'];
+    $_SESSION['userRole'] = $result['role'];
+    header("refresh:1;user.php");
+
   } else {
     echo "<p class='alert alert-danger text-uppercase'> Login Unsuccessfull </p>";
   }
@@ -31,7 +46,7 @@ if(isset($_POST['btn_login'])){
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>POS | Log in</title>
+  <title>POS | Log In</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -54,7 +69,7 @@ if(isset($_POST['btn_login'])){
 
       <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email">
+          <input type="email" name="email" class="form-control" placeholder="Email" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -62,7 +77,7 @@ if(isset($_POST['btn_login'])){
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
+          <input type="password" name="password" class="form-control" placeholder="Password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

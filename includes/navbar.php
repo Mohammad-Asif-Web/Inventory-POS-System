@@ -26,14 +26,21 @@
               <img src="assets/img/asif.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-                  Muhammad Asif
+                  <?php
+                  echo strtoupper($_SESSION['userName']);
+                  ?>
                 </h3>
+                <span>
+                <?php
+                  echo $_SESSION['userEmail'];
+                  ?>
+                </span>
                 <div class="d-flex justify-content-between mt-2">
                   <div class="text-sm">
                   <a href="#" class="btn btn-default btn-flat">Change Password</a>
                   </div>
                   <div class="text-sm">
-                  <a href="#" class="btn btn-default btn-flat">Sign Out</a>
+                  <a href="signout.php" class="btn btn-default btn-flat">Sign Out</a>
                   </div>
                 </div>
               </div>

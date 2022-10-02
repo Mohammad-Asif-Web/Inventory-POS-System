@@ -14,7 +14,13 @@
           <img src="assets/img/asif.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Muhammad Asif</a>
+          <P class="d-block">WELCOME 
+          <?php
+            echo strtoupper($_SESSION['userName']);
+          ?>
+          </P>
+          <a href="#"><i class="fa fa-circle text-success"></i> online
+          </a>
         </div>
       </div>
 

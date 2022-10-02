@@ -1,7 +1,18 @@
-<?php include 'includes/head.php'; ?>
-<?php include 'includes/preloader.php'; ?>
-<?php include 'includes/navbar.php'; ?>
-<?php include 'includes/sidebar.php'; ?>
+<?php
+include 'functions/config.php';
+session_start();
+
+if($_SESSION['userEmail'] == ''){
+  header('location: index.php');
+}
+
+
+include 'includes/head.php';
+include 'includes/preloader.php';
+include 'includes/navbar.php';
+include 'includes/sidebar.php'; 
+
+?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -21,17 +32,18 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
+    <!-- dashboard main content Start -->
+    <section>
+      Write Your table here...
+      <?php
 
-    <!-- Main content -->
-    <!-- /.content -->
+      echo "this is session";
+
+
+      ?>
+    </section>
+    <!-- main content End -->
   </div>
-  <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
 
 <?php include 'includes/footer.php'; ?>
