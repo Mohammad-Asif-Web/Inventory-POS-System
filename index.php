@@ -1,7 +1,16 @@
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="assets/js/adminlte.min.js"></script>
+<!-- sweet alert 2 CDN -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <?php
 include "functions/config.php";
 session_start();
-
+error_reporting(0);
 
 if(isset($_POST['btn_login'])){
   $email = $_POST['email'];
@@ -23,7 +32,24 @@ if(isset($_POST['btn_login'])){
     $_SESSION['userName'] = $result['username'];
     $_SESSION['userEmail'] = $result['user_email'];
     $_SESSION['userRole'] = $result['role'];
-    header("refresh:1;dashboard.php");
+
+    echo '<script type="text/javascript">
+    jQuery(function validation(){
+      Swal.fire({
+        title: "Good Job! '.strtoupper($_SESSION['userName']).'",
+        icon: "success",
+        html:
+          "<h1>Successfully Sign In</h1>",
+        showCloseButton: false,
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText:
+          "Loading...",
+      })
+    });
+    </script>';
+
+    header("refresh:2; dashboard.php");
 
   } else if($result['user_email'] == $email AND $result['password'] == $pass AND $result['role'] == 'User' ){
 
@@ -31,10 +57,41 @@ if(isset($_POST['btn_login'])){
     $_SESSION['userName'] = $result['username'];
     $_SESSION['userEmail'] = $result['user_email'];
     $_SESSION['userRole'] = $result['role'];
-    header("refresh:1;user.php");
+
+    echo '<script type="text/javascript">
+    jQuery(function validation(){
+      Swal.fire({
+        title: "Good Job! '.strtoupper($_SESSION['userName']).'",
+        icon: "success",
+        html:
+          "<h1>Successfully Sign In</h1>",
+        showCloseButton: false,
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText:
+          "Loading...",
+      })
+    });
+    </script>';
+
+    header("refresh:2 ;user.php");
 
   } else {
-    echo "<p class='alert alert-danger text-uppercase'> Login Unsuccessfull </p>";
+    echo '<script type="text/javascript">
+    jQuery(function validation(){
+      Swal.fire({
+        title: "Oops...",
+        icon: "error",
+        html:
+          "<h1>Sign In Unsuccessfull</h1>",
+        showCloseButton: false,
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText:
+          "Try Again",
+      })
+    });
+    </script>';
   }
 
 }
@@ -113,7 +170,7 @@ if(isset($_POST['btn_login'])){
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        <a href="forgot-password.php">I forgot my password</a>
       </p>
       <p class="mb-0">
         <a href="register.php" class="text-center">Register a new membership</a>
@@ -124,12 +181,8 @@ if(isset($_POST['btn_login'])){
 </div>
 <!-- /.login-box -->
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="assets/js/adminlte.min.js"></script>
+
+
 </body>
 </html>
 
