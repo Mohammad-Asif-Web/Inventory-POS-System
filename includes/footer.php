@@ -10,19 +10,5 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- AdminLTE App -->
-<script src="assets/js/adminlte.js"></script>
-
-<!-- PAGE PLUGINS -->
-
-<!-- AdminLTE for demo purposes -->
-<script src="assets/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="assets/js/pages/dashboard2.js"></script>
 </body>
 </html>

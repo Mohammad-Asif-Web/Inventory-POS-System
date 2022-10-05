@@ -11,6 +11,16 @@
 include "functions/config.php";
 session_start();
 error_reporting(0);
+/*if we logged to this site, but we can find the login page by url. so to solve this
+problem we used this code. After the login to this site, user can not go to again
+page, first he have to do log out, then he can do login again*/
+if(isset($_SESSION['userRole'])){
+  if($_SESSION['userRole'] == 'Admin'){
+    header('location: dashboard.php');
+  } else{
+    header('location: user.php');
+  }
+}
 
 if(isset($_POST['btn_login'])){
   $email = $_POST['email'];
@@ -40,9 +50,6 @@ if(isset($_POST['btn_login'])){
         icon: "success",
         html:
           "<h1>Successfully Sign In</h1>",
-        showCloseButton: false,
-        showCancelButton: false,
-        focusConfirm: false,
         confirmButtonText:
           "Loading...",
       })
@@ -65,9 +72,6 @@ if(isset($_POST['btn_login'])){
         icon: "success",
         html:
           "<h1>Successfully Sign In</h1>",
-        showCloseButton: false,
-        showCancelButton: false,
-        focusConfirm: false,
         confirmButtonText:
           "Loading...",
       })
@@ -84,9 +88,6 @@ if(isset($_POST['btn_login'])){
         icon: "error",
         html:
           "<h1>Sign In Unsuccessfull</h1>",
-        showCloseButton: false,
-        showCancelButton: false,
-        focusConfirm: false,
         confirmButtonText:
           "Try Again",
       })

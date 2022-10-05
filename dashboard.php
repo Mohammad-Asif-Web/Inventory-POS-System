@@ -1,9 +1,13 @@
 <?php
 include 'functions/config.php';
 session_start();
-
+// user can not enter main dashboard page without login first
 if($_SESSION['userEmail'] == ''){
   header('location: index.php');
+} 
+// if the role is user, always redirect to user, he could not enter to dashboard.php page
+if($_SESSION['userRole'] == 'User'){
+  header('location: user.php');
 }
 
 
@@ -11,7 +15,6 @@ include 'includes/head.php';
 include 'includes/preloader.php';
 include 'includes/navbar.php';
 include 'includes/sidebar.php'; 
-
 ?>
 
   <!-- Content Wrapper. Contains page content -->

@@ -1,10 +1,13 @@
 <?php 
 include 'functions/config.php';
 session_start();
-
 if($_SESSION['userEmail'] == ''){
   header('location: index.php');
 }
+if($_SESSION['userRole'] == 'Admin'){
+  header('location: dashboard.php');
+}
+
 
 include 'includes/head.php';
 include 'includes/preloader.php';

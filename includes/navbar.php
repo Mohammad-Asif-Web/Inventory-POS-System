@@ -37,7 +37,7 @@
                 </span>
                 <div class="d-flex justify-content-between mt-2">
                   <div class="text-sm">
-                  <a href="#" class="btn btn-default btn-flat">Change Password</a>
+                  <a href="change-password.php" class="btn btn-default btn-flat">Change Password</a>
                   </div>
                   <div class="text-sm">
                   <a href="signout.php" class="btn btn-default btn-flat">Sign Out</a>
